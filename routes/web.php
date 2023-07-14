@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CollaboratorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,69 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
+//! MVC -> Model View Controller
+//! php artisan make:controller NomeController -> per creare un controller
+//! ROTTE PUBLIC
+Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
+Route::get('/contacts', [PublicController::class, 'contatti'])->name('contatti');
 
-Route::get('/chi-siamo/studenti', function(){
-    $students = [
-        ['id' => 1, 'name' => 'Claudio', 'surname' => 'Paradisi', 'age' => 29],
-        ['id' => 2, 'name' => 'Giuseppe', 'surname' => 'Valente', 'age' => 38],
-        ['id' => 3, 'name' => 'Federico', 'surname' => 'Vitiello', 'age' => 27],
-        ['id' => 4, 'name' => 'Jody', 'surname' => 'Ossino', 'age' => 22],
-    ];
-    return view('studenti', ['students' => $students]);
-})->name('studenti');
+//! ROTTE STUDENT
+Route::get('/chi-siamo/studenti', [StudentController::class, 'index'])->name('studenti');
+Route::get('/chi-siamo/studenti/dettaglio/{id}', [StudentController::class, 'show'])->name('dettaglio.studente');
+Route::get('/chi-siamo/studenti/materia/{subject}', [StudentController::class, 'filterStudentBySubject'])->name('materia.studente');
 
-Route::get('/chi-siamo/studenti/dettaglio/{id}', function($id){
-    $students = [
-        ['id' => 1, 'name' => 'Claudio', 'surname' => 'Paradisi', 'age' => 29, 'subject' => 'CSS'],
-        ['id' => 2, 'name' => 'Giuseppe', 'surname' => 'Valente', 'age' => 38, 'subject' => 'JavaScript'],
-        ['id' => 3, 'name' => 'Federico', 'surname' => 'Vitiello', 'age' => 27, 'subject' => 'HTML'],
-        ['id' => 4, 'name' => 'Jody', 'surname' => 'Ossino', 'age' => 22, 'subject' => 'Laravel'],
-    ];
+//! ROTTE TEACHER
+Route::get('chi-siamo/docenti', [TeacherController::class, 'index'])->name('docenti');
+Route::get('chi-siamo/docenti/dettaglio/{docente}', [TeacherController::class, 'show'])->name('dettaglio.docente');
 
-    foreach($students as $student){
-        if($id == $student['id']){
-            return view('dettaglio-studente', ['student' => $student]);
-        }
-    }
-})->name('dettaglio.studente');
-
-Route::get('chi-siamo/docenti', function(){
-    $teachers = [
-        ['id' => 1, 'name' => 'Katia', 'surname' => 'Perrucci', 'age' => 30],
-        ['id' => 2, 'name' => 'Davide', 'surname' => 'Cariola', 'age' => 32],
-        ['id' => 3, 'name' => 'Andrea', 'surname' => 'Mininni', 'age' => 28],
-        ['id' => 4, 'name' => 'Marco', 'surname' => 'Chierchia', 'age' => 35],
-    ];
-
-    return view('docenti', ['docenti' => $teachers]);
-})->name('docenti');
-
-Route::get('chi-siamo/docenti/dettaglio/{docente}', function($id){
-    $teachers = [
-        ['id' => 1, 'name' => 'Katia', 'surname' => 'Perrucci', 'age' => 30],
-        ['id' => 2, 'name' => 'Davide', 'surname' => 'Cariola', 'age' => 32],
-        ['id' => 3, 'name' => 'Andrea', 'surname' => 'Mininni', 'age' => 28],
-        ['id' => 4, 'name' => 'Marco', 'surname' => 'Chierchia', 'age' => 35],
-    ];
-
-    foreach($teachers as $teacher){
-        if($id == $teacher['id']){
-            return view('dettaglio-docente', ['insegnante' => $teacher]);
-        }
-    }
-})->name('dettaglio.docente');
-
-
-
-
-
-
-
-
-
-Route::get('/contacts', function(){
-    return view('contatti');
-})->name('contatti');
+//! ROTTE COLLABORATOR
+Route::get('/chi-siamo/collaboratori', [CollaboratorController::class, 'index'])->name('collaboratori');
+Route::get('/chi-siamo/colaboratori/dettaglio/{id}', [CollaboratorController::class, 'show'])->name('dettaglio.collaboratore');
