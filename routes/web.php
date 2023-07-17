@@ -30,7 +30,7 @@ Route::get('/chi-siamo/studenti/materia/{subject}', [StudentController::class, '
 
 //! ROTTE TEACHER
 Route::get('chi-siamo/docenti', [TeacherController::class, 'index'])->name('docenti');
-Route::get('chi-siamo/docenti/dettaglio/{docente}', [TeacherController::class, 'show'])->name('dettaglio.docente');
+Route::get('chi-siamo/docenti/dettaglio/{id}', [TeacherController::class, 'show'])->name('dettaglio.docente');
 
 //! ROTTE COLLABORATOR
 Route::get('/chi-siamo/collaboratori', [CollaboratorController::class, 'index'])->name('collaboratori');
