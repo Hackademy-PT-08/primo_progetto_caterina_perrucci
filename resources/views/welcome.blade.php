@@ -5,6 +5,11 @@
     <x-header>
         Benvenuti a tutti 
     </x-header>
+    @if (session('emailSent'))
+        <div class="alert alert-success">
+            {{ session('emailSent') }}
+        </div>
+    @endif
     <div class="container min-vh-100 my-5">
         <div class="row justify-content-center">
             <div class="col-12">

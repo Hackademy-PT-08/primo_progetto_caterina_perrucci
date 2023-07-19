@@ -1,6 +1,4 @@
 <x-layout>
-   
-
     <div class="container-fluid p-5 bg-info">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -23,6 +21,4 @@
             </div>
         </div>
     </div>
-    
-    
 </x-layout>

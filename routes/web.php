@@ -22,6 +22,7 @@ use App\Http\Controllers\CollaboratorController;
 //! ROTTE PUBLIC
 Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
 Route::get('/contacts', [PublicController::class, 'contatti'])->name('contatti');
+Route::post('/contacts/submit', [PublicController::class, 'contactSubmit'])->name('contact.submit');
 
 //! ROTTE STUDENT
 Route::get('/chi-siamo/studenti', [StudentController::class, 'index'])->name('studenti');

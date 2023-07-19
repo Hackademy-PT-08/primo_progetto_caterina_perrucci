@@ -1,6 +1,4 @@
 <x-layout>
-
-
     <div class="container-fluid p-5 bg-info">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -9,10 +7,10 @@
         </div>
     </div>
     
-    <div class="container-fluid my-5">
+    <div class="container my-5">
         <div class="row justify-content-center">
             @foreach($docenti as $docente)
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 my-3">
                     <x-card
                     id="{{$docente['id']}}"
                     name="{{$docente['name']}}"
@@ -24,7 +22,4 @@
             @endforeach
         </div>
     </div>
-
 </x-layout>
-    
-

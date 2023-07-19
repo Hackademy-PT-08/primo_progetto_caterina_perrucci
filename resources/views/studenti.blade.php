@@ -6,10 +6,10 @@
         Gli studenti 
     </x-header>
     
-    <div class="container-fluid my-5">
+    <div class="container my-5">
         <div class="row justify-content-center">
             @foreach($students as $student)
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 my-3">
                     <x-card
                     id="{{$student['id']}}"
                     name="{{$student['name']}}"
